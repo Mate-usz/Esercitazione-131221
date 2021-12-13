@@ -1,0 +1,18 @@
+<div class="text-center mt-5">
+  <h1 [routerLink]="'/'" class="cursor-pointer">Weather App</h1>
+  <h2>La tua città, le tue previsioni adesso</h2>
+  <h3>Previsioni Correnti</h3>
+</div>
+<div class="d-flex flex-column justify-content-center align-items-center mt-5">
+  <form [formGroup]="cityWeatherForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="cityName">
+    <button type="submit" [disabled]="!cityWeatherForm.valid">Invia</button>
+  </form>
+
+  <ng-container *ngIf="subscription">
+      <div>
+        <p>{{cityInfo?.name}}, {{cityInfo?.state}}, {{cityInfo?.date | date: 'dd MMMM YYYY'}}</p>
+        <p>{{cityInfo?.temp}}° {{cityInfo?.clouds}}<img src={{cityInfo?.icon}}> </p>
+      </div>
+  </ng-container>
+</div>
